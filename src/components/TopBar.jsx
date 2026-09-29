@@ -1,6 +1,5 @@
 import { useLang } from '../context/LanguageContext.jsx'
 import { Icon } from './Icon.jsx'
-import { ModeToggle } from './mode-toggle.jsx'
 
 export default function TopBar({ onTextScale, highContrast, onToggleContrast }) {
   const { lang, setLang } = useLang()
