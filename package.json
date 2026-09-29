@@ -17,5 +17,8 @@
     "@vitejs/plugin-react": "^5.0.4",
     "tailwindcss": "^4.1.13",
     "vite": "^7.1.9"
+  },
+  "allowScripts": {
+    "esbuild": true
   }
 }
