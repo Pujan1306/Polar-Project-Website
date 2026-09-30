@@ -257,6 +257,15 @@ select:focus-visible,
   animation: career-rise 600ms ease-out both;
 }
 
+/* Gentle vertical floating for career constellation cards */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+.float-anim {
+  animation: float-y 4.5s ease-in-out infinite;
+}
+
 /* Blinking live dot */
 @keyframes live-pulse {
   0%, 100% { opacity: 1; }
@@ -271,9 +280,10 @@ select:focus-visible,
   font-family: "Noto Sans Devanagari", "Inter", sans-serif;
 }
 
-/* Reduced motion */
+/* Reduced motion: skip entrance animations, keep the gentle float */
 @media (prefers-reduced-motion: reduce) {
   .live-dot { animation: none; }
-  .career-card, .career-panel { animation: none; opacity: 1; }
+  .career-panel { animation: none; }
+  .career-card { animation: float-y 4.5s ease-in-out infinite; opacity: 1; }
   html { scroll-behavior: auto; }
 }

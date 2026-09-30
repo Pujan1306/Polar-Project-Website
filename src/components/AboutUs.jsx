@@ -77,41 +77,41 @@ export default function AboutUs() {
             </ul>
           </div>
 
-          {/* Career panel */}
-          <div className="career-panel relative overflow-hidden rounded-xl border border-border bg-navy p-5 text-white shadow-md lg:col-span-5">
-            <div className="pointer-events-none absolute -right-10 -top-10 h-44 w-44 rounded-full bg-primary/30 blur-2xl" aria-hidden="true" />
-            <div className="pointer-events-none absolute -bottom-12 -left-8 h-40 w-40 rounded-full bg-polar/30 blur-2xl" aria-hidden="true" />
-            <div className="relative flex flex-col gap-1">
-              <span className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-saffron">
-                <Icon name="sparkle" size={14} />
+          {/* Career constellation: title in the centre, four floating cards at the corners */}
+          <div className="career-panel relative mx-auto grid w-full max-w-md grid-cols-[1fr_auto_1fr] grid-rows-[1fr_auto_1fr] items-center justify-items-center gap-x-3 gap-y-4 lg:col-span-5">
+            {/* Centre hub */}
+            <div className="relative z-10 col-start-2 row-start-2 flex w-48 flex-col items-center gap-1.5 rounded-2xl border border-border bg-card px-4 py-5 text-center shadow-lg">
+              <Icon name="sparkle" size={20} className="text-saffron" />
+              <span className={`text-[15px] font-extrabold leading-snug text-navy ${lang === 'hi' ? 'lang-hi' : ''}`}>
                 {t({ en: 'Build Your Career With Us', hi: 'हमारे साथ अपना करियर बनाएँ' })}
               </span>
-              <p className={`text-[14px] leading-relaxed text-white/85 ${lang === 'hi' ? 'lang-hi' : ''}`}>
-                {t({
-                  en: 'From student internships to polar expeditions — start your journey with NCPOR.',
-                  hi: 'छात्र इंटर्नशिप से ध्रुवीय अभियान तक — एनसीपीओआर के साथ अपनी यात्रा शुरू करें।',
-                })}
-              </p>
-              <div className="mt-2 grid gap-2.5 sm:grid-cols-2">
-                {CAREER_CARDS.map((c, i) => (
-                  <a
-                    key={c.icon}
-                    href="#about"
-                    className="career-card group flex items-center gap-3 rounded-lg border border-white/15 bg-white/10 px-3.5 py-3 backdrop-blur transition hover:border-saffron/60 hover:bg-white/20"
-                    style={{ animationDelay: `${i * 90}ms` }}
-                  >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/15 text-saffron transition group-hover:scale-110 group-hover:bg-saffron group-hover:text-navy">
-                      <Icon name={c.icon} size={18} />
-                    </span>
-                    <span className="flex min-w-0 flex-col">
-                      <span className={`text-[13.5px] font-bold leading-tight ${lang === 'hi' ? 'lang-hi' : ''}`}>{t(c.title)}</span>
-                      <span className={`text-[11.5px] leading-snug text-white/70 ${lang === 'hi' ? 'lang-hi' : ''}`}>{t(c.sub)}</span>
-                    </span>
-                    <Icon name="arrowRight" size={15} className="ml-auto shrink-0 text-white/50 transition group-hover:translate-x-1 group-hover:text-saffron" />
-                  </a>
-                ))}
-              </div>
+              <span className={`text-[11px] leading-snug text-ink-soft ${lang === 'hi' ? 'lang-hi' : ''}`}>
+                {t({ en: 'Internships to expeditions — start with NCPOR', hi: 'इंटर्नशिप से अभियान तक — एनसीपीओआर से शुरू करें' })}
+              </span>
             </div>
+
+            {CAREER_CARDS.map((c, i) => {
+              const pos = [
+                'col-start-1 row-start-1 justify-self-start',
+                'col-start-3 row-start-1 justify-self-end',
+                'col-start-1 row-start-3 justify-self-start',
+                'col-start-3 row-start-3 justify-self-end',
+              ][i]
+              return (
+                <a
+                  key={c.icon}
+                  href="#about"
+                  className={`career-card float-anim group flex w-40 flex-col items-center gap-2 rounded-xl border border-border bg-card px-3 py-4 text-center shadow-md transition hover:-translate-y-1 hover:border-primary hover:shadow-lg ${pos}`}
+                  style={{ animationDelay: `${i * 700}ms` }}
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
+                    <Icon name={c.icon} size={18} />
+                  </span>
+                  <span className={`text-[12.5px] font-bold leading-tight text-navy ${lang === 'hi' ? 'lang-hi' : ''}`}>{t(c.title)}</span>
+                  <span className={`text-[11px] leading-snug text-ink-soft ${lang === 'hi' ? 'lang-hi' : ''}`}>{t(c.sub)}</span>
+                </a>
+              )
+            })}
           </div>
         </div>
 
