@@ -34,21 +34,30 @@ const MISSIONS = [
   },
 ]
 
+// Card positions only apply at xl (constellation layout).
+// Below xl the cards sit in a plain 2x2 grid under the hub.
+const CARD_POS = [
+  'xl:col-start-1 xl:row-start-1 xl:justify-self-start',
+  'xl:col-start-3 xl:row-start-1 xl:justify-self-end',
+  'xl:col-start-1 xl:row-start-3 xl:justify-self-start',
+  'xl:col-start-3 xl:row-start-3 xl:justify-self-end',
+]
+
 export default function AboutUs() {
   const { lang } = useLang()
   const t = (pair) => (typeof pair === 'object' ? pair[lang] : pair)
 
   return (
-    <section id="about" aria-labelledby="about-heading" className="bg-ice py-10">
+    <section id="about" aria-labelledby="about-heading" className="overflow-x-clip bg-ice py-8 sm:py-10">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="grid items-start gap-8 lg:grid-cols-12">
           {/* Text column */}
-          <div className="flex flex-col gap-4 lg:col-span-7">
+          <div className="flex min-w-0 flex-col gap-4 lg:col-span-7 xl:col-span-6">
             <div>
               <span className="text-[12.5px] font-bold uppercase tracking-widest text-primary">
                 {t({ en: 'Who We Are', hi: 'हम कौन हैं' })}
               </span>
-              <h2 id="about-heading" className={`text-3xl font-bold tracking-tight text-navy dark:text-chart-1 ${lang === 'hi' ? 'lang-hi' : ''}`}>
+              <h2 id="about-heading" className={`text-2xl font-bold tracking-tight text-navy sm:text-3xl dark:text-chart-1 ${lang === 'hi' ? 'lang-hi' : ''}`}>
                 {t({ en: 'About Us', hi: 'हमारे बारे में' })}
               </h2>
             </div>
@@ -71,16 +80,20 @@ export default function AboutUs() {
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <Icon name={m.icon} size={15} />
                   </span>
-                  {t(m.text)}
+                  <span className="min-w-0">{t(m.text)}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Career constellation: title in the centre, four floating cards at the corners */}
-          <div className="career-panel relative mx-auto grid w-full max-w-md grid-cols-[1fr_auto_1fr] grid-rows-[1fr_auto_1fr] items-center justify-items-center gap-x-3 gap-y-4 lg:col-span-5">
-            {/* Centre hub */}
-            <div className="relative z-10 col-start-2 row-start-2 flex w-48 flex-col items-center gap-1.5 rounded-2xl border border-border bg-card px-4 py-5 text-center shadow-lg">
+          {/*
+            Career panel
+            - below xl: hub on top (full width), 2x2 cards underneath
+            - xl and up: hub in the centre, four cards at the corners
+          */}
+          <div className="career-panel relative mx-auto grid w-full max-w-md grid-cols-2 gap-3 lg:col-span-5 xl:col-span-6 xl:max-w-xl xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:grid-rows-[1fr_auto_1fr] xl:items-center xl:justify-items-center xl:gap-x-3 xl:gap-y-4">
+            {/* Hub */}
+            <div className="relative z-10 col-span-2 flex w-full flex-col items-center gap-1.5 rounded-2xl border border-border bg-card px-4 py-5 text-center shadow-lg xl:col-span-1 xl:col-start-2 xl:row-start-2 xl:w-48">
               <Icon name="sparkle" size={20} className="text-saffron" />
               <span className={`text-[15px] font-extrabold leading-snug text-navy ${lang === 'hi' ? 'lang-hi' : ''}`}>
                 {t({ en: 'Build Your Career With Us', hi: 'हमारे साथ अपना करियर बनाएँ' })}
@@ -90,36 +103,28 @@ export default function AboutUs() {
               </span>
             </div>
 
-            {CAREER_CARDS.map((c, i) => {
-              const pos = [
-                'col-start-1 row-start-1 justify-self-start',
-                'col-start-3 row-start-1 justify-self-end',
-                'col-start-1 row-start-3 justify-self-start',
-                'col-start-3 row-start-3 justify-self-end',
-              ][i]
-              return (
-                <a
-                  key={c.icon}
-                  href="#about"
-                  className={`career-card float-anim group flex w-40 flex-col items-center gap-2 rounded-xl border border-border bg-card px-3 py-4 text-center shadow-md transition hover:-translate-y-1 hover:border-primary hover:shadow-lg ${pos}`}
-                  style={{ animationDelay: `${i * 700}ms` }}
-                >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
-                    <Icon name={c.icon} size={18} />
-                  </span>
-                  <span className={`text-[12.5px] font-bold leading-tight text-navy ${lang === 'hi' ? 'lang-hi' : ''}`}>{t(c.title)}</span>
-                  <span className={`text-[11px] leading-snug text-ink-soft ${lang === 'hi' ? 'lang-hi' : ''}`}>{t(c.sub)}</span>
-                </a>
-              )
-            })}
+            {CAREER_CARDS.map((c, i) => (
+              <a
+                key={c.icon}
+                href="#about"
+                className={`career-card float-anim group flex w-full flex-col items-center gap-2 rounded-xl border border-border bg-card px-3 py-4 text-center shadow-md transition hover:-translate-y-1 hover:border-primary hover:shadow-lg xl:max-w-40 ${CARD_POS[i]}`}
+                style={{ animationDelay: `${i * 700}ms` }}
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
+                  <Icon name={c.icon} size={18} />
+                </span>
+                <span className={`text-[12.5px] font-bold leading-tight text-navy ${lang === 'hi' ? 'lang-hi' : ''}`}>{t(c.title)}</span>
+                <span className={`text-[11px] leading-snug text-ink-soft ${lang === 'hi' ? 'lang-hi' : ''}`}>{t(c.sub)}</span>
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Stats strip */}
-        <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           {STATS.map((s) => (
-            <div key={s.value} className="flex flex-col items-center gap-1 rounded-xl border border-border bg-card px-4 py-5 text-center shadow-sm">
-              <span className="text-3xl font-extrabold tracking-tight text-navy dark:text-chart-1">{s.value}</span>
+            <div key={s.value} className="flex flex-col items-center gap-1 rounded-xl border border-border bg-card px-3 py-4 text-center shadow-sm sm:px-4 sm:py-5">
+              <span className="text-2xl font-extrabold tracking-tight text-navy sm:text-3xl dark:text-chart-1">{s.value}</span>
               <span className={`text-[12.5px] leading-snug text-ink-soft ${lang === 'hi' ? 'lang-hi' : ''}`}>
                 {t(s.label)}
               </span>
@@ -128,15 +133,15 @@ export default function AboutUs() {
         </div>
 
         {/* Contact / address strip */}
-        <div className="mt-6 flex flex-col items-start gap-3 rounded-xl border border-border bg-card p-5 shadow-sm sm:flex-row sm:items-center">
+        <div className="mt-6 flex flex-col items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-sm sm:flex-row sm:items-center sm:p-5">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-navy text-white">
             <Icon name="mail" size={18} />
           </span>
-          <div>
+          <div className="min-w-0">
             <span className={`block text-[14px] font-bold text-navy dark:text-chart-1 ${lang === 'hi' ? 'lang-hi' : ''}`}>
               {t({ en: 'Contact Us', hi: 'संपर्क करें' })}
             </span>
-            <p className={`text-[13px] leading-relaxed text-ink-soft ${lang === 'hi' ? 'lang-hi' : ''}`}>
+            <p className={`break-words text-[13px] leading-relaxed text-ink-soft ${lang === 'hi' ? 'lang-hi' : ''}`}>
               {t({
                 en: 'National Centre for Polar and Ocean Research, Ministry of Earth Sciences, Headland Sada, Vasco da Gama, Goa 403804, India.',
                 hi: 'राष्ट्रीय ध्रुवीय एवं समुद्री अनुसंधान केन्द्र, पृथ्वी विज्ञान मंत्रालय, हेडलैंड सदा, वास्को द गामा, गोवा 403804, भारत।',
