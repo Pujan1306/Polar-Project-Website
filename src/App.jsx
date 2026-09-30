@@ -74,13 +74,13 @@ export default function App() {
       <main id="main-content" tabIndex={-1} className="outline-none">
         <TelemetryStrip />
         <Hero />
-        <NewsSection />
         <StationCams />
         <PortalsGrid />
         <AboutPoles />
         <Programmes />
         <AssistantSpotlight />
         <MediaCards />
+        <NewsSection />
         <SocialSnapshots />
         <AboutUs />
         <QuickAccess />

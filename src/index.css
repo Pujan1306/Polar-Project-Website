@@ -168,6 +168,10 @@
   html {
     scroll-behavior: smooth;
   }
+  /* Anchored sections stop below the sticky header (TopBar + Header + nav) */
+  section[id] {
+    scroll-margin-top: 132px;
+  }
 }
 
 /* ---- Accessibility helpers ---- */
@@ -254,28 +258,8 @@ select:focus-visible,
   font-family: "Noto Sans Devanagari", "Inter", sans-serif;
 }
 
-/* Assistant FAQ spotlight: closed cards slide right + fade away while the
-   open card expands in a fixed-width panel. Kept in CSS so prefers-reduced-motion
-   users get an instant, animation-free swap. */
-.faq-card {
-  will-change: opacity, transform, filter;
-}
-.faq-card-hidden {
-  transform: translateX(24px);
-}
-.faq-answer {
-  animation: faq-answer-in 0.3s ease-out;
-}
-@keyframes faq-answer-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .live-dot { animation: none; }
-  .faq-card { transition: none; }
-  .faq-card-hidden { transform: none; }
-  .faq-answer { animation: none; }
   html { scroll-behavior: auto; }
 }
