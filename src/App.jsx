@@ -7,10 +7,12 @@ import Hero from './components/Hero.jsx'
 import NewsSection from './components/NewsSection.jsx'
 import StationCams from './components/StationCams.jsx'
 import PortalsGrid from './components/PortalsGrid.jsx'
+import AboutPoles from './components/AboutPoles.jsx'
 import Programmes from './components/Programmes.jsx'
 import AssistantSpotlight from './components/AssistantSpotlight.jsx'
 import MediaCards from './components/MediaCards.jsx'
 import SocialSnapshots from './components/SocialSnapshots.jsx'
+import AboutUs from './components/AboutUs.jsx'
 import QuickAccess from './components/QuickAccess.jsx'
 import Footer from './components/Footer.jsx'
 
@@ -75,10 +77,12 @@ export default function App() {
         <NewsSection />
         <StationCams />
         <PortalsGrid />
+        <AboutPoles />
         <Programmes />
         <AssistantSpotlight />
         <MediaCards />
         <SocialSnapshots />
+        <AboutUs />
         <QuickAccess />
       </main>
       <Footer />

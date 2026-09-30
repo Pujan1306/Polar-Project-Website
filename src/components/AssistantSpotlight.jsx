@@ -12,7 +12,7 @@ export default function AssistantSpotlight() {
     <section id="assistant" aria-labelledby="assistant-heading" className="relative overflow-hidden bg-navy py-10 text-white">
       <div className="pointer-events-none absolute -bottom-16 -right-16 h-96 w-96 rounded-full bg-primary/25 blur-3xl" aria-hidden="true" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 lg:grid-cols-12 lg:px-6">
-        <div className="flex flex-col gap-3 lg:col-span-7">
+        <div className="flex min-w-0 flex-col gap-3 lg:col-span-7">
           <div className="flex flex-wrap items-center gap-2">
             <span className="flex items-center gap-1.5 rounded bg-polar px-2.5 py-0.5 text-[12px] font-bold uppercase tracking-wider">
               <Icon name="sparkle" size={13} />
@@ -41,12 +41,12 @@ export default function AssistantSpotlight() {
         </div>
 
         {/* Sample Q&A accordion — shows how reviewed answers look */}
-        <div className="flex flex-col gap-2 lg:col-span-5">
+        <div className="flex min-w-0 flex-col gap-2 lg:col-span-5">
           <span className="text-[12px] font-bold uppercase tracking-wider text-white/70">
             {t({ en: 'Reviewed sample questions', hi: 'समीक्षित नमूना प्रश्न' })}
           </span>
           {ASSISTANT_FAQS.map((f, i) => (
-            <div key={i} className="overflow-hidden rounded-lg border border-white/15 bg-white/10 backdrop-blur">
+            <div key={i} className="w-full min-w-0 overflow-hidden rounded-lg border border-white/15 bg-white/10 backdrop-blur">
               <button
                 type="button"
                 onClick={() => setOpen(open === i ? -1 : i)}

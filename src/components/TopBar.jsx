@@ -15,7 +15,7 @@ export default function TopBar({ onTextScale, highContrast, onToggleContrast }) 
           Skip to main content
         </a>
 
-        <div className="flex min-w-0 items-center gap-2">
+        <div className="flex min-w-0 flex-1 items-center gap-2">
           <Icon name="gov" size={16} className="shrink-0 text-navy" />
           <span className="truncate font-semibold">
             {lang === 'hi' ? 'भारत सरकार | मंत्रालय: पृथ्वी विज्ञान' : 'Government of India | Ministry of Earth Sciences'}
@@ -60,7 +60,7 @@ export default function TopBar({ onTextScale, highContrast, onToggleContrast }) 
             <span className="hidden sm:inline">Contrast</span>
           </button>
           <button type="button" onClick={() => setLang(lang === 'en' ? 'hi' : 'en')} title="Switch language"
-            className="rounded border border-border bg-card px-2 py-0.5 font-semibold hover:bg-accent">
+            className="w-[72px] rounded border border-border bg-card px-2 py-0.5 text-center font-semibold hover:bg-accent">
             {lang === 'en' ? 'हिंदी' : 'English'}
           </button>
         </div>
