@@ -40,29 +40,47 @@ export default function AssistantSpotlight() {
           </div>
         </div>
 
-        {/* Sample Q&A accordion — shows how reviewed answers look */}
+        {/* Sample Q&A "spotlight" — click a question and it takes over the fixed-width
+            panel while the others slide aside and fade out. The panel never changes
+            width, so opening an answer cannot stretch the section. */}
         <div className="flex min-w-0 flex-col gap-2 lg:col-span-5">
           <span className="text-[12px] font-bold uppercase tracking-wider text-white/70">
             {t({ en: 'Reviewed sample questions', hi: 'समीक्षित नमूना प्रश्न' })}
-          </span>
-          {ASSISTANT_FAQS.map((f, i) => (
-            <div key={i} className="w-full min-w-0 overflow-hidden rounded-lg border border-white/15 bg-white/10 backdrop-blur">
-              <button
-                type="button"
-                onClick={() => setOpen(open === i ? -1 : i)}
-                aria-expanded={open === i}
-                className={`flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-[14px] font-semibold hover:bg-white/10 ${lang === 'hi' ? 'lang-hi' : ''}`}
-              >
-                {f.q[lang]}
-                <Icon name="chevronRight" size={16} className={`shrink-0 transition-transform ${open === i ? 'rotate-90' : ''}`} />
-              </button>
-              {open === i && (
-                <p className={`border-t border-white/15 px-4 py-3 text-[13.5px] leading-relaxed text-white/85 ${lang === 'hi' ? 'lang-hi' : ''}`}>
-                  {f.a[lang]}
-                </p>
-              )}
-            </div>
-          ))}
+          </span>          <div className="faq-spotlight relative flex w-full min-w-0 flex-col gap-2">
+            {ASSISTANT_FAQS.map((f, i) => {
+              const isOpen = open === i
+              const faded = open >= 0 && !isOpen
+              return (
+                <div
+                  key={i}
+                  aria-hidden={faded}
+                  className={`faq-card w-full min-w-0 overflow-hidden rounded-lg border border-white/15 bg-white/10 backdrop-blur transition-all duration-300 ease-out ${
+                    isOpen
+                      ? 'border-white/30 bg-white/15'
+                      : faded
+                        ? 'faq-card-hidden pointer-events-none h-9 cursor-default opacity-0 blur-sm'
+                        : 'hover:border-white/30'
+                  }`
+                }>
+                  <button
+                    type="button"
+                    onClick={() => setOpen(isOpen ? -1 : i)}
+                    aria-expanded={isOpen}
+                    tabIndex={faded ? -1 : 0}
+                    className={`flex w-full items-center justify-between gap-3 px-4 py-2 text-left text-[14px] font-semibold hover:bg-white/10 ${lang === 'hi' ? 'lang-hi' : ''}`}
+                  >
+                    {f.q[lang]}
+                    <Icon name="chevronRight" size={16} className={`shrink-0 transition-transform ${isOpen ? 'rotate-90' : ''}`} />
+                  </button>
+                  {isOpen && (
+                    <p className={`faq-answer border-t border-white/15 px-4 py-3 text-[13.5px] leading-relaxed text-white/85 ${lang === 'hi' ? 'lang-hi' : ''}`}>
+                      {f.a[lang]}
+                    </p>
+                  )}
+                </div>
+              )
+            })}
+          </div>
           <span className="text-[11.5px] text-white/60">
             {t({ en: 'Sample answers shown; live assistant connects to the NCPOR knowledge base.', hi: 'नमूना उत्तर दिखाए गए हैं; लाइव असिस्टेंट एनसीपीओआर ज्ञान आधार से जुड़ता है।' })}
           </span>
