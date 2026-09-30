@@ -1,6 +1,12 @@
-import { IMAGES } from '../data/content.js'
 import { useLang } from '../context/LanguageContext.jsx'
 import { Icon } from './Icon.jsx'
+
+const CAREER_CARDS = [
+  { icon: 'school', title: { en: 'Internships & Fellowships', hi: 'इंटर्नशिप एवं फेलोशिप' }, sub: { en: 'For students and scholars', hi: 'छात्रों और विद्वानों के लिए' } },
+  { icon: 'calendar', title: { en: 'Expedition Schedule', hi: 'अभियान कार्यक्रम' }, sub: { en: 'Ships, flights & voyages', hi: 'जहाज़, उड़ानें और यात्राएँ' } },
+  { icon: 'database', title: { en: 'Polar Data Centre', hi: 'पोलर डेटा केंद्र' }, sub: { en: 'Open science datasets', hi: 'खुले विज्ञान डेटासेट' } },
+  { icon: 'globe', title: { en: 'Antarctic Treaty', hi: 'अंटार्कटिका संधि' }, sub: { en: 'Treaty & policy documents', hi: 'संधि एवं नीति दस्तावेज़' } },
+]
 
 const STATS = [
   { value: '1981', label: { en: 'First Indian Antarctic expedition', hi: 'पहला भारतीय अंटार्कटिक अभियान' } },
@@ -71,32 +77,41 @@ export default function AboutUs() {
             </ul>
           </div>
 
-          {/* Image column */}
-          <div className="flex flex-col gap-4 lg:col-span-5">
-            <figure className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-              <img
-                src={IMAGES.maitriStation.src}
-                alt={IMAGES.maitriStation.alt}
-                className="h-56 w-full object-cover"
-                loading="lazy"
-              />
-              <figcaption className={`flex items-center justify-between gap-2 px-4 py-2.5 text-[12px] text-ink-soft ${lang === 'hi' ? 'lang-hi' : ''}`}>
-                <span>{t({ en: 'Maitri Station, Antarctica — established 1989', hi: 'मैत्री स्टेशन, अंटार्कटिका — स्थापित 1989' })}</span>
-                <Icon name="snowflake" size={14} className="shrink-0 text-primary" />
-              </figcaption>
-            </figure>
-            <figure className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-              <img
-                src={IMAGES.himadriArctic.src}
-                alt={IMAGES.himadriArctic.alt}
-                className="h-44 w-full object-cover"
-                loading="lazy"
-              />
-              <figcaption className={`flex items-center justify-between gap-2 px-4 py-2.5 text-[12px] text-ink-soft ${lang === 'hi' ? 'lang-hi' : ''}`}>
-                <span>{t({ en: 'Himadri at Ny-Ålesund, Arctic — active since 2008', hi: 'न्यू-ओलेसुंड में हिमाद्री, आर्कटिक — 2008 से सक्रिय' })}</span>
-                <Icon name="satellite" size={14} className="shrink-0 text-primary" />
-              </figcaption>
-            </figure>
+          {/* Career panel */}
+          <div className="career-panel relative overflow-hidden rounded-xl border border-border bg-navy p-5 text-white shadow-md lg:col-span-5">
+            <div className="pointer-events-none absolute -right-10 -top-10 h-44 w-44 rounded-full bg-primary/30 blur-2xl" aria-hidden="true" />
+            <div className="pointer-events-none absolute -bottom-12 -left-8 h-40 w-40 rounded-full bg-polar/30 blur-2xl" aria-hidden="true" />
+            <div className="relative flex flex-col gap-1">
+              <span className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-saffron">
+                <Icon name="sparkle" size={14} />
+                {t({ en: 'Build Your Career With Us', hi: 'हमारे साथ अपना करियर बनाएँ' })}
+              </span>
+              <p className={`text-[14px] leading-relaxed text-white/85 ${lang === 'hi' ? 'lang-hi' : ''}`}>
+                {t({
+                  en: 'From student internships to polar expeditions — start your journey with NCPOR.',
+                  hi: 'छात्र इंटर्नशिप से ध्रुवीय अभियान तक — एनसीपीओआर के साथ अपनी यात्रा शुरू करें।',
+                })}
+              </p>
+              <div className="mt-2 grid gap-2.5 sm:grid-cols-2">
+                {CAREER_CARDS.map((c, i) => (
+                  <a
+                    key={c.icon}
+                    href="#about"
+                    className="career-card group flex items-center gap-3 rounded-lg border border-white/15 bg-white/10 px-3.5 py-3 backdrop-blur transition hover:border-saffron/60 hover:bg-white/20"
+                    style={{ animationDelay: `${i * 90}ms` }}
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/15 text-saffron transition group-hover:scale-110 group-hover:bg-saffron group-hover:text-navy">
+                      <Icon name={c.icon} size={18} />
+                    </span>
+                    <span className="flex min-w-0 flex-col">
+                      <span className={`text-[13.5px] font-bold leading-tight ${lang === 'hi' ? 'lang-hi' : ''}`}>{t(c.title)}</span>
+                      <span className={`text-[11.5px] leading-snug text-white/70 ${lang === 'hi' ? 'lang-hi' : ''}`}>{t(c.sub)}</span>
+                    </span>
+                    <Icon name="arrowRight" size={15} className="ml-auto shrink-0 text-white/50 transition group-hover:translate-x-1 group-hover:text-saffron" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

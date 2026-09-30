@@ -244,6 +244,19 @@ select:focus-visible,
   scrollbar-width: none;
 }
 
+/* Career panel cards: staggered slide-up entrance + gentle glow */
+@keyframes career-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.career-card {
+  opacity: 0;
+  animation: career-rise 500ms ease-out forwards;
+}
+.career-panel {
+  animation: career-rise 600ms ease-out both;
+}
+
 /* Blinking live dot */
 @keyframes live-pulse {
   0%, 100% { opacity: 1; }
@@ -261,5 +274,6 @@ select:focus-visible,
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .live-dot { animation: none; }
+  .career-card, .career-panel { animation: none; opacity: 1; }
   html { scroll-behavior: auto; }
 }

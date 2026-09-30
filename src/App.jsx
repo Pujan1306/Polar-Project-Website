@@ -13,7 +13,6 @@ import AssistantSpotlight from './components/AssistantSpotlight.jsx'
 import MediaCards from './components/MediaCards.jsx'
 import SocialSnapshots from './components/SocialSnapshots.jsx'
 import AboutUs from './components/AboutUs.jsx'
-import QuickAccess from './components/QuickAccess.jsx'
 import Footer from './components/Footer.jsx'
 
 // Ordered smallest → largest: index 0 = A− (14px), 1 = A (default 16px), 2 = A+ (18px)
@@ -83,7 +82,6 @@ export default function App() {
         <NewsSection />
         <SocialSnapshots />
         <AboutUs />
-        <QuickAccess />
       </main>
       <Footer />
     </LanguageProvider>
