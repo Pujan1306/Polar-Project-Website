@@ -302,22 +302,8 @@ export const ASSISTANT_FAQS = [
   {
     q: { en: 'Who checks the AI-written posts?', hi: 'एआई-लिखी पोस्ट कौन जाँचता है?' },
     a: {
-      en: 'Every AI draft on this portal is reviewed and approved by NCPOR staff before it is published. Answers always link back to the NCPOR report or dataset they came from, so you can read the original science yourself. If a staff member finds an error, the post is corrected or withdrawn before anyone sees it.',
-      hi: 'इस पोर्टल पर हर एआई ड्राफ्ट प्रकाशित होने से पहले एनसीपीओआर कर्मियों द्वारा समीक्षित और अनुमोदित होता है। उत्तर हमेशा मूल एनसीपीओआर रिपोर्ट या डेटासेट से जुड़ा होता है, ताकि आप मूल विज्ञान स्वयं पढ़ सकें। यदि किसी कर्मचारी को त्रुटि मिलती है, तो पोस्ट को सही कर दिया जाता है या हटा दिया जाता है।',
-    },
-  },
-  {
-    q: { en: 'Can I visit a polar station or see the ice cores?', hi: 'क्या मैं ध्रुवीय स्टेशन जा सकता हूँ या आइस कोर देख सकता हूँ?' },
-    a: {
-      en: 'The stations themselves are only open to expedition members, but you do not have to travel to see the science. The Polar Museum in Goa and the ice core archive accept school and college visits, station cams stream live views from the ice, and every photograph and dataset on this portal is free to explore.',
-      hi: 'स्टेशनों में केवल अभियान सदस्य ही जा सकते हैं, पर विज्ञान देखने के लिए यात्रा ज़रूरी नहीं है। गोवा का पोलर म्यूज़ियम और आइस कोर संग्रह विद्यालयों व कॉलेजों की यात्राएँ स्वीकार करते हैं, स्टेशन कैम बर्फ से लाइव दृश्य दिखाते हैं, और इस पोर्टल की हर तस्वीर व डेटासेट निःशुल्क हैं।',
-    },
-  },
-  {
-    q: { en: 'Why is polar research important for India?', hi: 'भारत के लिए ध्रुवीय अनुसंधान क्यों महत्वपूर्ण है?' },
-    a: {
-      en: 'The poles act as Earth\u2019s climate engine. Changes in Arctic sea ice and Antarctic glaciers influence the Indian monsoon, sea levels along our 7,500 km coastline, and the Himalayan rivers that feed agriculture. Studying the poles up close helps India forecast these changes and prepare for them.',
-      hi: 'ध्रुव पृथ्वी का जलवायु इंजन हैं। आर्कटिक समुद्री बर्फ और अंटार्कटिक ग्लेशियरों में बदलाव भारतीय मानसून, हमारे 7,500 किमी तट और कृषि को जल देने वाली हिमालयन नदियों को प्रभावित करते हैं। ध्रुवों का निकट से अध्ययन भारत को इन बदलावों का पूर्वानुमान लगाने और उनकी तैयारी करने में मदद करता है।',
+      en: 'Every AI draft on this portal is reviewed and approved by NCPOR staff before it is published. Answers always link back to the NCPOR report or dataset they came from.',
+      hi: 'इस पोर्टल पर हर एआई ड्राफ्ट प्रकाशित होने से पहले एनसीपीओआर कर्मियों द्वारा समीक्षित और अनुमोदित होता है।',
     },
   },
 ]
